@@ -1,9 +1,8 @@
 class Board
   attr_accessor :board, :row, :col
 
-  def initialize(row, col)
-    @row = row
-    @col = col
+  def initialize(dimensions)
+    @row, @col = dimensions  
     @board = Array.new(row) { Array.new(col) }
 end
 

@@ -14,9 +14,9 @@ class Game
   end
 
   def no_available_tiles?
-    @board.row.times do |i|
-      @board.col.times do |j|
-        return false if @board[row][col] == "."
+    @board.row.times do |row|
+      @board.col.times do |col|
+        return false if @board.board[row][col] == "."
       end
     end
     return true
@@ -46,6 +46,15 @@ class Game
     end
   end
 
+  def take_turn(player)
+    puts "Please designate your move by typing in: row col"
+    input = gets
+    row, col = input.split(" ")
+    row = row.to_i
+    col = col.to_i
+    @board.board[row][col] = player.game_piece
+  end
+
   def run
 
     player1_winner = false
@@ -61,7 +70,7 @@ class Game
         tie = true
         break
       else
-        @player1.take_turn
+        take_turn(@player1)
         @board.show_board
       end
 
@@ -71,7 +80,7 @@ class Game
         tie = true
         break
       else
-        @player2.take_turn
+        take_turn(@player2)
         @board.show_board
       end
     end
